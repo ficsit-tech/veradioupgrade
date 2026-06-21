@@ -100,6 +100,18 @@ section[id], main[id]{scroll-margin-top:88px}
 
 /* ---------- SERVICES ---------- */
 .cards{display:grid; grid-template-columns:repeat(4,1fr); gap:18px}
+.gallery-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+.pcard{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; transition:border-color .18s, transform .18s}
+.pcard:hover{border-color:var(--line-strong); transform:translateY(-3px)}
+.pcard-img{aspect-ratio:4/3; background:var(--base-2); overflow:hidden}
+.pcard-img img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .35s}
+.pcard:hover .pcard-img img{transform:scale(1.04)}
+.pcard-body{padding:18px 20px}
+.pcard-body .vk{font-family:"JetBrains Mono",monospace; font-size:11px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--accent)}
+.pcard-body h3{font-size:18px; margin:8px 0 6px}
+.pcard-body p{color:var(--muted); font-size:14.5px; margin:0}
+@media(max-width:900px){.gallery-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.gallery-grid{grid-template-columns:1fr}}
 .card{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:24px 22px; transition:border-color .18s, transform .18s}
 .card:hover{border-color:var(--line-strong); transform:translateY(-3px)}
 .card .ico{width:42px; height:42px; border-radius:10px; background:var(--base-2); border:1px solid var(--line-strong); display:flex; align-items:center; justify-content:center; margin-bottom:18px}
@@ -130,6 +142,11 @@ section[id], main[id]{scroll-margin-top:88px}
 .pricecard .pc-name{font-weight:600; font-size:17px}
 .pricecard .pc-sub{color:var(--muted); font-size:14px; margin:6px 0 20px}
 .pricecard .btn{width:100%; margin-bottom:10px}
+.pp-buy{margin:0 0 14px; min-height:46px}
+.pp-divider{display:flex; align-items:center; gap:12px; margin:4px 0 14px; font-family:"JetBrains Mono",monospace; font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted-dim)}
+.pp-divider::before,.pp-divider::after{content:""; flex:1; height:1px; background:var(--line)}
+.pc-link{display:block; text-align:center; margin-top:12px; font-size:13px; color:var(--muted); text-decoration:underline; text-underline-offset:3px}
+.pc-link:hover{color:var(--ink)}
 .kitstrip{margin-top:30px}
 .kitstrip h4{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); font-weight:600; margin:0 0 14px}
 .kit-tiles{display:grid; grid-template-columns:repeat(4,1fr); gap:12px}
@@ -267,6 +284,8 @@ section[id], main[id]{scroll-margin-top:88px}
   .nav-inner{gap:12px}
 }
 </style>
+<!-- PayPal SDK (hosted buttons) -->
+<script src="https://www.paypal.com/sdk/js?client-id=BAA4k2_4EsyXl3eYxNGodIJ7WbJwzauSKdOtBzXsURP_kL-2ZOd3JIDtPz3JTfvH_3U3en4N0zxN3N7N5U&components=hosted-buttons&disable-funding=venmo,paylater,credit,card&currency=AUD"></script>
 </head>
 <body>
 
@@ -285,6 +304,7 @@ section[id], main[id]{scroll-margin-top:88px}
       <a href="#upgrade">The Upgrade</a>
       <a href="#pricing">Pricing</a>
       <a href="#versions">Versions</a>
+      <a href="#gallery">Gallery</a>
       <a href="#compat">Compatibility</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -301,6 +321,7 @@ section[id], main[id]{scroll-margin-top:88px}
   <a href="#upgrade">The Upgrade</a>
   <a href="#pricing">Pricing</a>
   <a href="#versions">Versions</a>
+  <a href="#gallery">Gallery</a>
   <a href="#compat">Compatibility</a>
   <a href="#contact">Contact</a>
   <div class="mm-actions">
@@ -435,8 +456,10 @@ section[id], main[id]{scroll-margin-top:88px}
           <div class="pc-amt"><span>$</span>450</div>
           <div class="pc-name">Programmed Series 2 iQ unit</div>
           <div class="pc-sub">Coded to your car and bench-tested. Trims, harness and fitting priced separately.</div>
-          <a class="btn btn-primary" href="#pricing">See full pricing</a>
+          <div class="pp-buy" id="paypal-container-RCX9L5KMAAMK8"></div>
+          <div class="pp-divider">or</div>
           <a class="btn btn-ghost" href="#contact">Text your enquiry</a>
+          <a class="pc-link" href="#pricing">See full pricing</a>
         </div>
         <div class="kitstrip reveal">
           <h4>A typical conversion uses</h4>
@@ -522,6 +545,46 @@ section[id], main[id]{scroll-margin-top:88px}
 </section>
 
 <!-- VERSIONS -->
+<section class="section" id="gallery" style="border-top:1px solid var(--line)">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">The parts</span>
+      <h2>What's in the kit.</h2>
+      <p>Trims, stock components and the plug-and-play cable — photographed on the bench so you know exactly what arrives.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="pcard reveal">
+        <div class="pcard-img"><img src="images/Calais-Berlina-Omega_KIT.webp" alt="Calais, Berlina and Omega trim kit" loading="lazy"></div>
+        <div class="pcard-body"><span class="vk">Luxury range</span><h3>Calais / Berlina / Omega Kit</h3><p>Rectangular-vent dash trims and surrounds for the luxury models.</p></div>
+      </div>
+      <div class="pcard reveal">
+        <div class="pcard-img"><img src="images/SV6-SS-SSV_Kit1.webp" alt="SV6, SS and SSV trim kit" loading="lazy"></div>
+        <div class="pcard-body"><span class="vk">Sports range</span><h3>SV6 / SS / SSV Kit</h3><p>Circular-vent trims and surrounds to suit the sports range.</p></div>
+      </div>
+      <div class="pcard reveal">
+        <div class="pcard-img"><img src="images/SV6-SS-SSV_Kit2.webp" alt="SV6, SS and SSV trim kit, second view" loading="lazy"></div>
+        <div class="pcard-body"><span class="vk">Sports range</span><h3>SV6 / SS / SSV Kit — Detail</h3><p>Closer look at the fit and finish of the sports trims.</p></div>
+      </div>
+      <div class="pcard reveal">
+        <div class="pcard-img"><img src="images/Stock1.webp" alt="Stock dash components" loading="lazy"></div>
+        <div class="pcard-body"><span class="vk">Core parts</span><h3>Stock Dash Components</h3><p>The factory brackets and housings that carry the iQ unit.</p></div>
+      </div>
+      <div class="pcard reveal">
+        <div class="pcard-img"><img src="images/Stock2.webp" alt="Stock dash components, second view" loading="lazy"></div>
+        <div class="pcard-body"><span class="vk">Core parts</span><h3>Stock Components — Detail</h3><p>Another angle on the mounting hardware and trims.</p></div>
+      </div>
+      <div class="pcard reveal">
+        <div class="pcard-img"><img src="images/Radio_Trims_Only.webp" alt="Radio trims" loading="lazy"></div>
+        <div class="pcard-body"><span class="vk">Trims only</span><h3>Radio Trims</h3><p>Just the screen surrounds — for those supplying their own unit.</p></div>
+      </div>
+      <div class="pcard reveal">
+        <div class="pcard-img"><img src="images/UBS_Cable.webp" alt="USB adapter cable" loading="lazy"></div>
+        <div class="pcard-body"><span class="vk">Plug &amp; play</span><h3>USB Adapter Cable</h3><p>The harness adapter that wires the iQ unit into your VE.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="section" id="versions">
   <div class="wrap">
     <div class="section-head reveal">
@@ -723,6 +786,20 @@ section[id], main[id]{scroll-margin-top:88px}
     items.forEach(function(el){ io.observe(el); });
   }
 })();
+</script>
+<!-- PayPal hosted button render -->
+<script>
+  (function(){
+    function renderPP(){
+      if (window.paypal && paypal.HostedButtons) {
+        paypal.HostedButtons({ hostedButtonId: "RCX9L5KMAAMK8" })
+          .render("#paypal-container-RCX9L5KMAAMK8");
+      } else {
+        setTimeout(renderPP, 200);
+      }
+    }
+    renderPP();
+  })();
 </script>
 </body>
 </html>
